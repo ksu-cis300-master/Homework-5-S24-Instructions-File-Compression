@@ -1,0 +1,598 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+</style><title>index</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='homework-assignment-5-file-compressiondecompression'><span>Homework Assignment 5: File Compression/Decompression</span></h1><p><span>For this assignment, you will write a file compressor/decompressor using code from Lab Assignment 26. </span></p><h2 id='0-contents'><span>0. Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#homework-assignment-5-file-compressiondecompression">Homework Assignment 5: File Compression/Decompression</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3"><a class="md-toc-inner" href="#0-contents">0. Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n6"><a class="md-toc-inner" href="#1-user-requirements">1. User Requirements</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n8"><a class="md-toc-inner" href="#2-format-of-compressed-files">2. Format of Compressed Files</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n30"><a class="md-toc-inner" href="#3-starting-the-assignment">3. Starting the Assignment</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n38"><a class="md-toc-inner" href="#4-user-interface">4. User Interface</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n40"><a class="md-toc-inner" href="#41-manual-user-interface-design">4.1. Manual User Interface Design</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n44"><a class="md-toc-inner" href="#42-behavior-of-the-gui">4.2. Behavior of the GUI</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n46"><a class="md-toc-inner" href="#421-compress-a-file">4.2.1 Compress a File</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n58"><a class="md-toc-inner" href="#422-decompress-a-file">4.2.2. Decompress a File</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n62"><a class="md-toc-inner" href="#43-exception-handling">4.3. Exception Handling</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n69"><a class="md-toc-inner" href="#5-software-architecture">5. Software Architecture</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n74"><a class="md-toc-inner" href="#6-provided-data-types">6. Provided Data Types</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n76"><a class="md-toc-inner" href="#61-bitinputstream">6.1. BitInputStream</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n79"><a class="md-toc-inner" href="#62-bitoutputstream">6.2. BitOutputStream</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n82"><a class="md-toc-inner" href="#7-coding-requirements">7. Coding Requirements</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n84"><a class="md-toc-inner" href="#71-the-constants-class">7.1. The Constants Class</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n105"><a class="md-toc-inner" href="#72-the-compressor-class">7.2. The Compressor Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n108"><a class="md-toc-inner" href="#721-the-getfrequencytable-method">7.2.1. The <strong>GetFrequencyTable</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n110"><a class="md-toc-inner" href="#722-a-private-method-to-convert-a-value-to-a-bit-string">7.2.2. A <strong>private</strong> method to convert a value to a bit string</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n113"><a class="md-toc-inner" href="#723-a-private-method-to-write-the-huffman-tree">7.2.3. A <strong>private</strong> method to write the Huffman tree</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n125"><a class="md-toc-inner" href="#724-a-private-method-to-get-the-variable-width-encodings">7.2.4. A private method to get the variable-width encodings</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n135"><a class="md-toc-inner" href="#725-a-public-compress-method">7.2.5. A <strong>public Compress</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n155"><a class="md-toc-inner" href="#73-the-decompressor-class">7.3. The Decompressor Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n157"><a class="md-toc-inner" href="#731-a-private-method-to-read-a-given-number-of-bits">7.3.1. A <strong>private</strong> method to read a given number of bits</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n160"><a class="md-toc-inner" href="#732-a-public-decompress-method">7.3.2. A <strong>public</strong> Decompress method</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n170"><a class="md-toc-inner" href="#74-the-userinterface-class">7.4. The UserInterface Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n172"><a class="md-toc-inner" href="#741-the-event-handler-for-the-compress-a-file-button">7.4.1. The event handler for the "Compress a File" button</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n174"><a class="md-toc-inner" href="#742-the-event-handler-for-the-decompress-a-file-button">7.4.2. The event handler for the "Decompress a File" button</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n176"><a class="md-toc-inner" href="#8-testing-and-debugging">8. Testing and Debugging</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n233"><a class="md-toc-inner" href="#9-performance">9. Performance</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n283"><a class="md-toc-inner" href="#10-submitting-your-solution">10. Submitting Your Solution</a></span></p></div><p>&nbsp;</p><h2 id='1-user-requirements'><span>1. User Requirements</span></h2><p><span>The user needs a code base for experimenting with new file compression techniques. This code base needs to be a fully-functioning program that compresses and decompresses files. However, it needs to implement only the most basic compression involving the use of a variable-width encoding, computed by using a Huffman tree as built in Lab Assignment 26. The company will then build on this code base by trying additional techniques. The compression should be </span><em><span>lossless</span></em><span>; i.e., decompressing a compressed file should produce an exact copy of the original file. The program only needs to compress single files.</span></p><h2 id='2-format-of-compressed-files'><span>2. Format of Compressed Files</span></h2><p><span>If the file to be compressed is nonempty, the compressed file produced by this program should have the following format:</span></p><ul><li><p><span>The first 63 bits should give the length (in bytes) of the original file. </span></p></li><li><p><span>The next 8 bits should be the number of non-leaf nodes in the Huffman tree. In what follows, we will refer to this value as </span><em><span>n</span></em><span>. In any binary tree, the number of leaves is one more than the number of non-leaves. Any nonempty Huffman tree has from 1 to 256 leaves; hence, </span><em><span>n</span></em><span> will range from 0 to 255, which is exactly the range that can be stored in 8 bits.</span></p></li><li><p><span>The next 19</span><em><span>n</span></em><span> + 9 bits should contain a description of the Huffman tree. This description consists of a description of each node in the tree, in an order such that each non-leaf occurs somewhere after its left child and immediately following its right child. We will associate with each node a </span><em><span>node number</span></em><span>, which is the number of nodes written prior to this node. Thus, the first node written has a node number of 0, the second has a node number of 1, etc. A node should be written as follows:</span></p><ul><li><span>If the node is a leaf, its first bit should be 0, and its next 8 bits should be the byte stored in the node (9 bits total).</span></li><li><span>Otherwise, its first bit should be a 1, and its next 9 bits should be the node number of its left child (10 bits total).</span></li></ul><p><span>Because a Huffman tree with </span><em><span>n</span></em><span> non-leaves always has exactly </span><em><span>n</span></em><span> + 1 leaves, the total number of bits in its description is 19</span><em><span>n</span></em><span> + 9.</span></p></li><li><p><span>What follows is the encoding of the original file using the variable-width encoding scheme given by the Huffman tree. The length of this encoding depends on the contents of the original file.</span></p></li><li><p><span>If the end of the above encoding is not at a byte boundary, up to 7 bits of zeros are added to bring it to a byte boundary (this will be done automatically for you when the stream is closed).</span></p></li></ul><p><span>If the original file is empty, the compressed file should be 8 bytes of 0s. These 8 bytes represent the first 63 bits above, which encode a file length of 0, followed by one 0 bit to bring the total to a byte boundary. </span></p><p><span>Note that the reason we need to encode the length of the original file is due to the possible presence of the extra bits needed to reach a byte boundary. Because these bits may be present, we need to know when to stop reading the encoding when decompressing the file.</span></p><p><span>Note that because of the need to write the file length and the Huffman tree, the compressed file can in some cases be longer than the original file (for example, when the original file is empty). This is not surprising - in fact, it is possible to show that any lossless compression scheme that reduces the length of some files must also increase the length of some files. In the worst case, this scheme can increase the length by as much as 616 bytes.</span></p><h2 id='3-starting-the-assignment'><span>3. Starting the Assignment</span></h2><p><span> Create a GitHub repository using the URL provided in Canvas. This repository contains the model solution to Lab Assignment 26 with the following files added:</span></p><ul><li><strong><span>Ksu.Cis300.BitIO.dll</span></strong><span>, which provides the namespace </span><strong><span>Ksu.Cis300.BitIO</span></strong><span> for reading and writing files a bit at a time (see below).</span></li><li><strong><span>BinaryFileViewer.exe</span></strong><span>, an executable that allows you to examine the contents of a file at the bit level (see </span><a href='#8-testing-and-debugging'><span>Section 8. Testing and Debugging</span></a><span>).</span></li><li><strong><span>FileCompare.exe</span></strong><span>, an executable that allows you to compare two files (see </span><a href='#8-testing-and-debugging'><span>Section 8. Testing and Debugging</span></a><span>).</span></li><li><strong><span>Ksu.Cis300.FileCompare.</span><span>*</span></strong><span>, three files that need to be in the same folder as </span><strong><span>FileCompare.exe</span></strong><span> in order for that program to run.</span></li></ul><p><span>In addition, several new files were added to </span><strong><span>Data.zip</span></strong><span>. Finally, a unit test project, </span><strong><span>Ksu.Cis300.HuffmanTrees.Tests</span></strong><span>, has been added.</span></p><h2 id='4-user-interface'><span>4. User Interface</span></h2><p><span>In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>). The </span><a href=''><span>demo video</span></a><span> also illustrates the expected look and behavior.</span></p><h3 id='41-manual-user-interface-design'><span>4.1. Manual User Interface Design</span></h3><p><span>The main GUI should be modified to resemble the following:</span></p><p><img src="gui.png" alt="The GUI." style="zoom:67%;" /></p><p><span>The GUI will also have two </span><strong><span>OpenFileDialog</span></strong><span>s (one for opening uncompressed files and one for opening compressed files) and two </span><strong><span>SaveFileDialog</span></strong><span>s (one for saving compressed files and one for saving uncompressed files) associated with it. The </span><strong><span>FileName</span></strong><span> properties for these dialogs should all be empty. The </span><strong><span>Filter</span></strong><span> property for each of the dialogs for uncompressed files should be set to </span><code>All files (*.*)|*.*</code><span> to allow display of all file types. For each of the dialogs for compressed files, the </span><strong><span>Filter</span></strong><span> property should be set to </span><code>Compressed files (*.cmp)|*.cmp|All files (*.*)|*.*</code><span> to cause files with a suffix of &quot;.cmp&quot; to be shown by default. For these latter two dialogs, the </span><strong><span>SupportMultiDotted</span></strong><span> property needs to be set to </span><strong><span>True</span></strong><span> to allow the handling of file names like </span><code>file.txt.cmp</code><span>. The </span><strong><span>Title</span></strong><span> property for the </span><strong><span>OpenFileDialog</span></strong><span> for uncompressed files should be set to </span><code>Compress File</code><span>. The </span><strong><span>Title</span></strong><span> property for the other </span><strong><span>OpenFileDialog</span></strong><span> should be set to </span><code>Decompress File</code><span>.</span></p><h3 id='42-behavior-of-the-gui'><span>4.2. Behavior of the GUI</span></h3><p><span>The functionality of the two buttons is described in what follows. After that, the exception handling you will need to include is described.</span></p><h3 id='421-compress-a-file'><span>4.2.1 Compress a File</span></h3><p><span>Clicking this button should open the </span><strong><span>OpenFileDialog</span></strong><span> for uncompressed files. Its title should be, &quot;Compress File&quot;. Furthermore, there should be no file name displayed when this dialog is first opened (when it is opened again, it can have the name of the last file selected for compression). Finally, the filter dropdown should contain a single entry, &quot;All files (</span><span>*</span><span>.</span><span>*</span><span>)&quot;, which should allow all files to be shown. </span></p><p><span>If the user selects a file from the above dialog, the </span><strong><span>SaveFileDialog</span></strong><span> for compressed files should be displayed. The title of this dialog should be &quot;Save As&quot;, and the file name shown should be the file selected in the above dialog, with &quot;.cmp&quot; appended.</span></p><p><strong><span>Note:</span></strong><span> In order to get the file name to be set properly when saving either a compressed or decompressed file, you will need to configure your system to display file name extensions. Instructions for doing this can be found </span><a href='https://www.howtogeek.com/205086/beginner-how-to-make-windows-show-file-extensions/'><span>here</span></a><span>.</span></p><p><span>The filter dropdown should contain two entries:</span></p><ul><li><span>&quot;Compressed files (</span><span>*</span><span>.cmp)&quot;, which should show all file names ending in &quot;.cmp&quot;. This should be the default.</span></li><li><span>&quot;All files (</span><span>*</span><span>.</span><span>*</span><span>)&quot;, which should show all files.</span></li></ul><p><span>If the user selects a file from the second dialog, the program should compress the contents of the first file selected and place the result in the second file selected. After the compressed file is successfully written, a </span><strong><span>MessageBox</span></strong><span> displaying the message, &quot;Compressed file written.&quot;, should be shown. If any exception is thrown, it should be displayed in a </span><strong><span>MessageBox</span></strong><span>. Exceptions due to programmer error should not be thrown.</span></p><p><span>If the user cancels either dialog without selecting a file, nothing should be done.</span></p><h3 id='422-decompress-a-file'><span>4.2.2. Decompress a File</span></h3><p><span>Clicking this button should display the </span><strong><span>OpenFileDialog</span></strong><span> for compressed files. Its title should be, &quot;Decompress File&quot;, and its filter dropdown should be like the one for the </span><strong><span>SaveFileDialog</span></strong><span> described above. If the user selects a file from this dialog, the </span><strong><span>SaveFileDialog</span></strong><span> for uncompressed files should be displayed. It should be similar to the </span><strong><span>SaveFileDialog</span></strong><span> described above, except that the filter dropdown should be like the one for the </span><strong><span>OpenFileDialog</span></strong><span> for uncompressed files. Furthermore, if the file name that was chosen in the </span><strong><span>OpenFileDialog</span></strong><span> ends in &quot;.cmp&quot;, the file name shown in the </span><strong><span>SaveFileDialog</span></strong><span> should be the same name, but with the &quot;.cmp&quot; removed. Otherwise, the file name should be empty.</span></p><p><span>If the user selects a file from the second dialog, the program should decompress the contents of the first file selected and place the result in the second file selected. After the compressed file is successfully written, a </span><strong><span>MessageBox</span></strong><span> displaying the message, &quot;Decompressed file written.&quot;, should be shown. The decompressed file should be identical to the original uncompressed file. If any exception is thrown, it should be displayed in a </span><strong><span>MessageBox</span></strong><span>. Exceptions due to programmer error should not be thrown.</span></p><p><span>If the user cancels either dialog without selecting a file, nothing should be done.</span></p><h3 id='43-exception-handling'><span>4.3. Exception Handling</span></h3><p><span>You do not need to check explicitly for any errors during file compression. During file decompression, however, you need to check explicitly for the following errors in the input file:</span></p><ul><li><span>If an internal Huffman tree node (i.e., a non-leaf) has a node number </span><em><span>n</span></em><span> and the node number given for its left child is </span><em><span>n</span></em><span> or larger, throw an </span><strong><span>IOException</span></strong><span> containing the message &quot;The Huffman tree is improperly formed.&quot;</span></li><li><span>If the end of the input is reached at any time before the decompression is finished, throw an </span><strong><span>IOException</span></strong><span> containing the message, &quot;Unexpected end of compressed data.&quot;</span></li></ul><h2 id='5-software-architecture'><span>5. Software Architecture</span></h2><p><span>The following class diagram shows the classes to be included in the project, </span><strong><span>Ksu.Cis300.HuffmanTrees</span></strong><span>.</span></p><p><img src="ClassDiagram.png" alt="Class diagram for the Ksu.Cis300.HuffmanTrees project." style="zoom:67%;" /></p><p><span>The </span><strong><span>static</span></strong><span> class </span><strong><span>Constants</span></strong><span> will contain definitions of constants that will be used by the other classes in this project. The </span><strong><span>static</span></strong><span> classes </span><strong><span>Compressor</span></strong><span> and </span><strong><span>Decompressor</span></strong><span> will contain </span><strong><span>static</span></strong><span> methods for compressing and decompressing, respectively, a </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.io.stream?view=net-6.0'><strong><span>Stream</span></strong></a><span>. Note that several of the methods, perhaps with modifications (see </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>), of the </span><strong><span>Compressor</span></strong><span> class are already in the </span><strong><span>UserInterface</span></strong><span> class. They will need to be moved to the </span><strong><span>Compressor</span></strong><span> class.</span></p><p><span>In order for the unit tests to compile, the names of all </span><strong><span>public</span></strong><span> members must match the names in the above class diagram.</span></p><h2 id='6-provided-data-types'><span>6. Provided Data Types</span></h2><p><span>Several other types are provided - these are not shown in the class diagram above. The </span><strong><span>BinaryTreeNode</span><span>&lt;</span><span>T</span><span>&gt;</span></strong><span> class (in the </span><strong><span>Ksu.Cis300.ImmutableBinaryTrees</span></strong><span> namespace) has been provided in </span><strong><span>Ksu.Cis300.ImmutableBinaryTrees.dll</span></strong><span>, and the class library project containing </span><strong><span>MinPriorityQueue&lt;TPriority, TValue&gt;</span></strong><span> (in the </span><strong><span>Ksu.Cis300.PriorityQueueLibrary</span></strong><span> namespace) has been included. In addition, the DLL </span><strong><span>Ksu.Cis300.BitIO.dll</span></strong><span> provides the namespace </span><strong><span>RodHowell.Cis300.BitIO</span></strong><span>, which contains two classes for reading and writing a bit at a time. These two classes are described in what follows.</span></p><h3 id='61-bitinputstream'><span>6.1. BitInputStream</span></h3><p><span>This class supports reading individual bits. It contains two constructors, but the only one you will need takes as its only parameter a </span><strong><span>string</span></strong><span> giving the path name of the file to be read. The only method you will need is the </span><strong><span>ReadBits</span></strong><span> method, which takes as its only parameter an </span><strong><span>int</span></strong><span> giving the number of bits to read. It returns a </span><strong><span>string</span></strong><span> of </span><code>1</code><span>s and </span><code>0</code><span>s giving the bits read from the stream. The length of the string returned will be the value passed as the parameter if the stream contains at least this many bits. If the stream contains fewer bits, the string will contain all of the remaining bits from the stream. Note that this means that the empty string is returned if no bits remain.</span></p><p><span>Instances of this class may be defined within </span><strong><span>using</span></strong><span> statements.</span></p><h3 id='62-bitoutputstream'><span>6.2. BitOutputStream</span></h3><p><span>This class supports writing individual bits. It contains two constructors, but the only one you will need takes as its only parameter a </span><strong><span>string</span></strong><span> giving the path name of the file to be written. The only method you will need is the </span><strong><span>WriteBits</span></strong><span> method, which takes as its only parameter a </span><strong><span>string</span></strong><span> containing the bits to be written. If this string is </span><strong><span>null</span></strong><span>, empty, or contains any characters other than &#39;0&#39; or &#39;1&#39;, an </span><strong><span>ArgumentException</span></strong><span> will be thrown. It returns nothing. </span></p><p><span>Instances may be defined within </span><strong><span>using</span></strong><span> statements.</span></p><h2 id='7-coding-requirements'><span>7. Coding Requirements</span></h2><p><span>The coding requirements for the </span><strong><span>Compressor</span></strong><span>, </span><strong><span>Decompressor</span></strong><span>, and </span><strong><span>UserInterface</span></strong><span> classes are described in what follows.</span></p><h3 id='71-the-constants-class'><span>7.1. The Constants Class</span></h3><p><span>This </span><strong><span>static</span></strong><span> class needs the following </span><strong><span>public static readonly</span></strong><span> fields:</span></p><ul><li><strong><span>BitsInFileLength</span></strong><span>: an </span><strong><span>int</span></strong><span> giving the number of bits in the file length field (63).</span></li><li><strong><span>BitsInNonLeaves</span></strong><span>: an </span><strong><span>int</span></strong><span> giving the number of bits in the field giving the number of non-leaves (8).</span></li><li><strong><span>Leaf</span></strong><span>: a </span><strong><span>string</span></strong><span> giving the bit used to indicate that a Huffman tree node in a compressed file is a leaf (&quot;0&quot;).</span></li><li><strong><span>NonLeaf</span></strong><span>: a </span><strong><span>string</span></strong><span> giving the bit used to indicate that a Huffman tree node in a compressed file is a non-leaf (&quot;1&quot;).</span></li><li><strong><span>BitsInByte</span></strong><span>: an </span><strong><span>int</span></strong><span> giving the number of bits in a byte (8).</span></li><li><strong><span>BitsInNodeNumber</span></strong><span>: an </span><strong><span>int</span></strong><span> giving the number of bits in a node number (9).</span></li><li><strong><span>Radix</span></strong><span>: an </span><strong><span>int</span></strong><span> giving the radix for a bit string (2; i.e., a bit string encodes a value in base 2).</span></li><li><strong><span>Left</span></strong><span>: a </span><strong><span>string</span></strong><span> giving the bit string to use to indicate a left child (&quot;0&quot;).</span></li><li><strong><span>Right</span></strong><span>: a </span><strong><span>string</span></strong><span> giving the character to use to indicate a right child (&quot;1&quot;).</span></li></ul><h3 id='72-the-compressor-class'><span>7.2. The Compressor Class</span></h3><p><span>You will need two </span><strong><span>private</span></strong><span> fields, one </span><strong><span>public</span></strong><span> method, and at least six </span><strong><span>private</span></strong><span> methods for this class. Feel free to break the code into additional </span><strong><span>private</span></strong><span> methods. Because the class is to be </span><strong><span>static</span></strong><span>, all of these methods must also be </span><strong><span>static</span></strong><span>. The field and the </span><strong><span>private</span></strong><span> methods </span><strong><span>GetFrequencyTable</span></strong><span>, </span><strong><span>GetLeaves</span></strong><span>, and </span><strong><span>BuildHuffmanTree</span></strong><span> provided in the </span><strong><span>UserInterface</span></strong><span> class should be moved to this class. One of these methods will need to be modified - this change and the four new methods are described in what follows. No exception handling (i.e., </span><strong><span>try-catch</span></strong><span>) should be done within this class - it should be left to the </span><strong><span>UserInterface</span></strong><span> class instead.</span></p><p><span>As numeric values are converted to bit strings, it may be necessary to pad the bit string on the left with </span><code>0</code><span>s to get the proper length. To facilitate this padding, define a </span><strong><span>private static readonly char</span></strong><span> field to store this padding character (&#39;0&#39;).</span></p><h4 id='721-the-getfrequencytable-method'><span>7.2.1. The </span><strong><span>GetFrequencyTable</span></strong><span> method</span></h4><p><span>The parameter to this method should be changed to </span><strong><span>Stream</span></strong><span> so that it can be used with various kinds of input streams. </span><strong><span>Stream</span></strong><span> is a super-type of </span><strong><span>FileStream</span></strong><span>; hence, you can use this parameter in place of the </span><strong><span>FileStream</span></strong><span> variable. Because this stream will be opened and closed in the </span><strong><span>UserInterface</span></strong><span> class, you will not need the </span><strong><span>using</span></strong><span> statement. Otherwise, the method should remain the same.</span></p><h4 id='722-a-private-method-to-convert-a-value-to-a-bit-string'><span>7.2.2. A </span><strong><span>private</span></strong><span> method to convert a value to a bit string</span></h4><p><span>This method should take as its parameters a </span><strong><span>long</span></strong><span> giving the value to convert, and an </span><strong><span>int</span></strong><span> giving the minimum length of the bit string to be produced. It should return a </span><strong><span>string</span></strong><span> giving this bit string. The </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.convert.tostring?view=net-6.0#system-convert-tostring(system-int64-system-int32)'><strong><span>Convert.ToString</span></strong></a><span> method has an overload that takes a </span><strong><span>long</span></strong><span> to convert and an </span><strong><span>int</span></strong><span> (which must be either 2, 8, 10, or 16) giving the radix to use for conversion. Thus, the given long can be converted to a bit string by using the appropriate constant from the </span><strong><span>Constants</span></strong><span> class as the second parameter to </span><strong><span>Convert.ToString</span></strong><span>. However, this string might be shorter than the given minimum length. You can use the </span><strong><span>string</span></strong><span>&#39;s </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.string.padleft?view=net-6.0#system-string-padleft(system-int32-system-char)'><strong><span>PadLeft</span></strong></a><span> method to pad the string to given minimum length using the appropriate character constant above. </span></p><p><span>Note that as long as the calling code provides a value that will fit in a bit string of the given minimum length, the string returned will have exactly this length. Note also that this method can be passed either an </span><strong><span>int</span></strong><span> or a </span><strong><span>byte</span></strong><span> as the first parameter without doing any explicit type conversions.</span></p><h4 id='723-a-private-method-to-write-the-huffman-tree'><span>7.2.3. A </span><strong><span>private</span></strong><span> method to write the Huffman tree</span></h4><p><span>This method should take the following parameters:</span></p><ul><li><span>a </span><strong><span>BinaryTreeNode</span><span>&lt;</span><span>byte</span><span>&gt;</span></strong><span> giving a Huffman tree, which you may assume to be non-</span><strong><span>null</span></strong><span>;</span></li><li><span>a </span><strong><span>BitOutputStream</span></strong><span> giving the the stream to which to write the tree; and</span></li><li><span>an </span><strong><span>int</span></strong><span> giving the number of nodes written so far.</span></li></ul><p><span>It should return an </span><strong><span>int</span></strong><span> giving the node number of the root of the the given tree. This method should write all the nodes, as described in </span><a href='#2-format-of-compressed-files'><span>Section 2. Format of Compressed Files</span></a><span>, using a postorder traversal.</span></p><p><span>If the given tree is a leaf (in a Huffman tree, if either child is empty, they both are, so you only need to check one), first write a bit to indicate that it is a leaf (use the appropriate constant). Then write the byte value stored in the node (use the above method with the appropriate constant to get the bit string to write). Return this leaf&#39;s node number, which is the number of nodes that were written before it was written. (</span><strong><span>Note:</span></strong><span> You should only use the </span><strong><span>BitOutputStream</span></strong><span>&#39;s </span><strong><span>WriteBits</span></strong><span> method for writing output. Don&#39;t use other </span><strong><span>BitOutputStream</span></strong><span> methods such as </span><strong><span>WriteByte</span></strong><span>, as these methods will throw exceptions if the stream is not at a byte boundary.)</span></p><p><span>If the given tree is not a leaf, first recursively write each of the children, left child first, and save the values returned by these calls. For the third parameter of the recursive calls, you will need to determine how many nodes have been written up to this point (it will either be the given number of nodes written or one more than the node number of the root of the tree that was just written). After the children have been written, write a bit to indicate that the node you are now writing is a non-leaf. Then write the node number of the root of the left child. Return the node number of the root.</span></p><h4 id='724-a-private-method-to-get-the-variable-width-encodings'><span>7.2.4. A private method to get the variable-width encodings</span></h4><p><span>This method should take the following parameters:</span></p><ul><li><span>a </span><strong><span>BinaryTreeNode</span><span>&lt;</span><span>byte</span><span>&gt;</span></strong><span> giving a non-</span><strong><span>null</span></strong><span> Huffman tree (which may be a sub-tree of the entire Huffman tree);</span></li><li><span>a </span><strong><span>StringBuilder</span></strong><span> describing the path in the entire Huffman tree to the given sub-tree (a &#39;0&#39; indicates the left child, and a &#39;1&#39; indicates the right child); and</span></li><li><span>a </span><strong><span>string[ ]</span></strong><span> in which the encodings will be stored (you may assume it has 256 locations).</span></li></ul><p><span>It should not return anything. This method will need to traverse the given tree, and at each leaf, place description of the path to that leaf (as a </span><strong><span>string</span></strong><span>) in the given </span><strong><span>string[ ]</span></strong><span> at the index indicated by the </span><strong><span>byte</span></strong><span> stored in the leaf. Because only leaves will be processed, it doesn&#39;t make sense to call this an inorder, preorder, or postorder traversal (it could actually be any of the three). There are only two cases. If the tree is a leaf, store the given path in the array element indexed by the </span><strong><span>byte</span></strong><span> stored in the node. Otherwise, recursively get the encodings for the two children. Prior to making each recursive call, append the appropriate constant to the </span><strong><span>StringBuilder</span></strong><span>, and remove this value after the recursive call.</span></p><h4 id='725-a-public-compress-method'><span>7.2.5. A </span><strong><span>public Compress</span></strong><span> method</span></h4><p><span>This method should take as its parameters a </span><strong><span>Stream</span></strong><span> giving the data to be compressed and a </span><strong><span>BitOutputStream</span></strong><span> to which the compressed data will be written. It should return nothing. It is responsible for compressing the given input file to the given output file in the format described under &quot;Compressed File Format&quot; above. You don&#39;t any </span><strong><span>using</span></strong><span> statements because the streams will be opened and closed in the </span><strong><span>UserInterface</span></strong><span> class. </span></p><p><span>First, make sure both parameters are non-</span><strong><span>null</span></strong><span> - if either is </span><strong><span>null</span></strong><span> throw an </span><strong><span>ArgumentNullException</span></strong><span>. Then get the length of the stream using its </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.length?view=net-6.0'><strong><span>Length</span></strong></a><span> property, which gets a </span><strong><span>long</span></strong><span>, and write it to the output stream using the proper number of bits. If the length of the input stream is nonzero:</span></p><ol start='' ><li><span>Build the frequency table.</span></li><li><span>Build a </span><strong><span>MinPriorityQueue</span></strong><span> containing the leaves of the Huffman tree.</span></li><li><span>Write the number of non-leaves in the tree (you can compute this from the number of leaves in the </span><strong><span>MinPriorityQueue</span></strong><span>).</span></li><li><span>Build the Huffman tree.</span></li><li><span>Write the Huffman tree.</span></li><li><span>Get the variable-width encodings. The array passed to the method that does this should have the same length as the frequency table.</span></li><li><span>Return the input stream to its beginning by using its </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.seek?view=net-6.0'><strong><span>Seek</span></strong></a><span> method, using 0 as its first parameter and </span><strong><span>SeekOrigin.Begin</span></strong><span> as its second parameter.</span></li><li><span>Write each byte from the input, using its variable-width encoding. It&#39;s possible that the length of the encoding is 0 (meaning all the bytes in the input file are the same) - if so, don&#39;t try to write anything, as the </span><strong><span>BitOutputStream</span></strong><span>&#39;s </span><strong><span>WriteBits</span></strong><span> method requires a length of at least 1.</span></li></ol><h3 id='73-the-decompressor-class'><span>7.3. The Decompressor Class</span></h3><p><span>You will need one </span><strong><span>public</span></strong><span> method and at least three </span><strong><span>private</span></strong><span> methods for this class. Because the class is to be </span><strong><span>static</span></strong><span>, all of these methods must also be </span><strong><span>static</span></strong><span>. No exception handling (i.e., </span><strong><span>try-catch</span></strong><span>) should be done within this class - it should be left to the </span><strong><span>UserInterface</span></strong><span> class instead. In what follows, we describe one of the </span><strong><span>private</span></strong><span> methods and the </span><strong><span>public</span></strong><span> method. You must break the code into at least two more </span><strong><span>private</span></strong><span> methods.</span></p><h4 id='731-a-private-method-to-read-a-given-number-of-bits'><span>7.3.1. A </span><strong><span>private</span></strong><span> method to read a given number of bits</span></h4><p><span>This method should take an </span><strong><span>int</span></strong><span> giving the number of bits to read and a </span><strong><span>BitInputStream</span></strong><span> from which to read the bits. It should return a </span><strong><span>long</span></strong><span> containing the bits read. Its main purpose is to read the given number of bits using the </span><strong><span>BitInputStream</span></strong><span>&#39;s </span><strong><span>ReadBits</span></strong><span> method, and to return what that method returns. In addition, it needs to do a little error checking. The </span><strong><span>BitInputStream</span></strong><span>&#39;s </span><strong><span>ReadBits</span></strong><span> method returns a </span><strong><span>string</span></strong><span> giving the bits actually read. This returned value is this method&#39;s only mechanism for reporting whether it has tried to read past the end of the stream. However, if your program is working correctly and the input is a correctly-formed compressed file, it should never try to read past the end of the stream. Thus, you will need to compare the number of bits actually read with the number of bits you tried to read, and if those values are different, throw an exception as described under &quot;Exception Handling&quot; above.</span></p><p><span>You should use this method whenever you need to read from a </span><strong><span>BitInputStream</span></strong><span>.</span></p><h4 id='732-a-public-decompress-method'><span>7.3.2. A </span><strong><span>public</span></strong><span> Decompress method</span></h4><p><span>This method should take as its parameters a </span><strong><span>BitInputStream</span></strong><span> containing the compressed data and a </span><strong><span>Stream</span></strong><span> to which the decompressed data will be written. It should return nothing. It is responsible for decompressing the given input stream to the given output stream, assuming the input stream is in the format described under &quot;Compressed File Format&quot; above. Don&#39;t include any </span><strong><span>using</span></strong><span> statements, as the streams will be opened and closed in the </span><strong><span>UserInterface</span></strong><span> class. </span></p><p><span>First, make sure both parameters are non-</span><strong><span>null</span></strong><span> - if either is </span><strong><span>null</span></strong><span> throw an </span><strong><span>ArgumentNullException</span></strong><span>. Then read the length of the uncompressed stream from the input. The </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.convert.toint64?view=net-6.0#system-convert-toint64(system-string-system-int32)'><strong><span>Convert.ToInt64</span></strong></a><span> method has an overload that takes the </span><strong><span>string</span></strong><span> to convert as the first parameter and radix to use for the conversion as the second parameter (the </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.convert.toint32?view=net-6.0#system-convert-toint32(system-string-system-int32)'><strong><span>Convert.ToInt32</span></strong></a><span> and </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.convert.tobyte?view=net-6.0#system-convert-tobyte(system-string-system-int32)'><strong><span>Convert.ToByte</span></strong></a><span> methods have similar overloads). If this length is nonzero:</span></p><ol start='' ><li><span>Read the number of non-leaves in the Huffman tree, and compute the total number of nodes.</span></li><li><span>Read the Huffman tree into a </span><strong><span>BinaryTreeNode</span><span>&lt;</span><span>byte</span><span>&gt;</span><span>[ ]</span></strong><span>. Read the data describing each node, build a binary tree node from this data, and store it in the next array location. Each node number can be used as an index into the array. If a node number greater than or equal to the current index is read, throw the appropriate exception as explained under &quot;Exception Handling&quot; above. The last node placed in the array will be the root of the tree.</span></li><li><span>Read the remainder of the input a bit at a time, using the Huffman tree to decode these bits, and write each decoded byte. Set this up as nested loops. The outer loop should iterate once for each byte in the uncompressed stream. The inner loop should start at the root of Huffman tree, and on each iteration, read a bit and use it to determine which child to go to. Stop iterating the inner loop when a leaf is reached, and write the </span><strong><span>byte</span></strong><span> stored in this leaf.</span></li></ol><h3 id='74-the-userinterface-class'><span>7.4. The UserInterface Class</span></h3><p><span>Within this class, you will need an event handler for each of the buttons. These event handlers are described in what follows. You may include any additional </span><strong><span>private</span></strong><span> methods that you feel improve the quality of the code. You will also need a </span><strong><span>private const string</span></strong><span> field to store the suffix to be used for compressed file names (&quot;.cmp&quot;).</span></p><h4 id='741-the-event-handler-for-the-compress-a-file-button'><span>7.4.1. The event handler for the &quot;Compress a File&quot; button</span></h4><p><span>Using the </span><strong><span>public</span></strong><span> method in the </span><strong><span>Compressor</span></strong><span> class, you should now be able to implement this event handler so that it behaves as described in </span><a href='#421-compress-a-file'><span>Section 4.2.1. Compress a File</span></a><span>. Use </span><strong><span>using</span></strong><span> statements to define each of the streams. You can nest these </span><strong><span>using</span></strong><span> statements. Use </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.io.file.openread?view=net-6.0'><strong><span>File.OpenRead</span></strong></a><span> to create the input stream, and the </span><strong><span>BitOutputStream</span></strong><span> constructor described under &quot;</span><strong><span>BitOutputStream</span></strong><span>&quot; above to construct the output stream.</span></p><h4 id='742-the-event-handler-for-the-decompress-a-file-button'><span>7.4.2. The event handler for the &quot;Decompress a File&quot; button</span></h4><p><span>Using the above methods, you should now be able to write this event handler so that it behaves as described in </span><a href='#422-decompress-a-file'><span>Section 4.2.2. Decompress a File</span></a><span>. Be careful in setting the default file name in the </span><strong><span>SaveFileDialog</span></strong><span> - the file name chosen in the </span><strong><span>OpenFileDialog</span></strong><span> may be shorter than the suffix you are looking for. Use the </span><strong><span>File.Create</span></strong><span> method to create the output stream.</span></p><h2 id='8-testing-and-debugging'><span>8. Testing and Debugging</span></h2><p><span>Unit tests have been provided to help you to test and debug the functionality of the </span><strong><span>Compressor</span></strong><span> and </span><strong><span>Decompressor</span></strong><span> classes. In debugging these tests, be sure to pay attention not only to the feedback provided by the test itself, but also to the comments in the test code. The feedback and comments have been structured to help you to narrow down where the bugs are occurring. For example, some of the tests for compressing a stream check the individual components of the compressed output and display discrepancies in a format that is easier to read than raw data. Specifically, the leaves of the Huffman tree are displayed as strings of the form:</span></p><blockquote><p><span>Leaf 0x</span><em><span>hexValue</span></em><span> &#39;</span><em><span>charValue</span></em><span>&#39;</span></p></blockquote><p><span>Where </span><em><span>hexValue</span></em><span> is the value of the byte stored in the leaf displayed in hexadecimal, and </span><em><span>charValue</span></em><span> is this value displayed as a character. The non-leaves are displayed as strings of the form:</span></p><blockquote><p><span>Non-leaf 0x</span><em><span>hexValue</span></em><span> </span><em><span>decimalValue</span></em></p></blockquote><p><span>Where </span><em><span>hexValue</span></em><span> is the node number of the left child displayed in hexadecimal, and </span><em><span>decimalValue</span></em><span> is this number displayed in decimal.</span></p><p><span>Group the tests first by class, then by trait, and work through the failed tests alphabetically within this grouping. When debugging tests with multiple failures, focus first on the first failure, as it may affect the remaining failures.</span></p><p><span>Because the unit tests don&#39;t test the </span><strong><span>UserInterface</span></strong><span> class, you will need to test the full program on some data files. Furthermore, debugging the unit tests might in some cases be easier if you can see the full results of your compression, along with expected results. For these purposes, data files have been provided for you in </span><strong><span>Data.zip</span></strong><span>. For best results, unzip this archive using the &quot;Extract All&quot; facility built into Windows (i.e., right-click on the file in the Windows File Explorer, and select &quot;Extract-All...&quot;). Other methods of unpacking the archive might result in Unix-style line-end characters being translated to Windows-style - this will cause your compressed files to be different from the expected output files provided (though they should still decompress back to the original file).</span></p><p><span>This archive contains several uncompressed files, the corresponding compressed files that your program should produce, and several bad compressed files that can be used for testing your program&#39;s error checking. Specifically, it contains the following files:</span></p><ul><li><strong><span>badTree1.txt.cmp</span></strong><span>: Compressed data in which the Huffman tree is improperly formed (it has a node whose left child is itself). Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressBadTree1</span></strong><span>.</span></li><li><strong><span>badTree2.txt.cmp</span></strong><span>: Compressed data in which the Huffman tree is improperly formed (it has a node whose node number is smaller than the node number of its left child). Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressBadTree2</span></strong><span>.</span></li><li><strong><span>banana.txt</span></strong><span>: A short (7 bytes) plain-text file. The contents this file are encoded in </span><code>Utilities.Banana</code><span> in the unit test code.</span></li><li><strong><span>banana.txt.cmp</span></strong><span>: The expected result of compressing </span><strong><span>banana.txt</span></strong><span> (19 bytes). The contents of this file are encoded in </span><code>Utilities.BananaCompressed</code><span> in the unit test code.</span></li><li><strong><span>bonnie.txt</span></strong><span>: A slightly longer (115 bytes) plain-text file.  The contents of this file are encoded in </span><code>Utilities.Bonnie</code><span> in the unit test code.</span></li><li><strong><span>bonnie.txt.cmp</span></strong><span>: The expected result of compressing </span><strong><span>bonnie.txt</span></strong><span> (113 bytes). The contents of this file are encoded in </span><code>Utilities.BonnieCompressed</code><span> in the unit test code.</span></li><li><strong><span>bonnieTruncatedEncodings.txt.cmp</span></strong><span>: Compressed data in which the variable-width encodings end prematurely. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedEncodings</span></strong><span>.</span></li><li><strong><span>bonnieTruncatedLength.txt.cmp</span></strong><span>: Compressed data in which the file length is truncated. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedLength</span></strong><span>.</span></li><li><strong><span>bonnieTruncatedNodeCount.txt.cmp</span></strong><span>: Compressed data in which the number of non-leaves is truncated. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedNodeCount</span></strong><span>.</span></li><li><strong><span>bonnieTruncatedTree1.txt.cmp</span></strong><span>: Compressed data in which the Huffman tree ends prematurely - specifically, between nodes. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedTree1</span></strong><span>.</span></li><li><strong><span>bonnieTruncatedTree2.txt.cmp</span></strong><span>: Compressed data in which the Huffman tree ends prematurely - specifically, in the middle of a leaf node. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedTree2</span></strong><span>.</span></li><li><strong><span>bonnieTruncatedTree3.txt.cmp</span></strong><span>: Compressed data in which the Huffman tree ends prematurely - specifically, in the middle of a non-leaf node. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. The contents of this file are used in the unit test </span><strong><span>DecompressorTests.TestDecompressTruncatedTree3</span></strong><span>.</span></li><li><strong><span>cmp</span></strong><span>: This is a copy of </span><strong><span>bonnie.txt.cmp</span></strong><span>. When decompressing, in the &quot;Decompress File&quot; dialog, you will need to change the filter drop-down to &quot;All files (</span><span>*</span><span>.</span><span>*</span><span>)&quot; in order to see this file. The &quot;Save As&quot; dialog should show an empty file name. It should decompress to the same file as </span><strong><span>bonnie.txt</span></strong><span>.</span></li><li><strong><span>empty.txt</span></strong><span>: An empty file. Its contents are used in the unit tests </span><strong><span>CompressorTests.TestCompressEmpty</span></strong><span> and </span><strong><span>DecompressorTests.TestDecompressTruncatedEmpty</span></strong><span>. Attempting to decompress this file should result in an error message being displayed, as described under &quot;Exception Handling&quot; above. </span></li><li><strong><span>empty.txt.cmp</span></strong><span>: The expected result of compressing </span><strong><span>empty.txt</span></strong><span> (8 bytes). Its contents are used in the unit test </span><strong><span>CompressorTests.TestDecompressToEmpty</span></strong><span>.</span></li><li><strong><span>index.md</span></strong><span>: A medium-sized (57,182 bytes) plain-text file (the markdown file used to generate the instructions files for Homework 3).</span></li><li><strong><span>index.md.cmp</span></strong><span>: The expected result of compressing </span><strong><span>index.md</span></strong><span> (33,628 bytes).</span></li><li><strong><span>Some Zs.txt</span></strong><span>: The same byte value (the character &#39;Z&#39;) repeated 10,000 times. Its contents are used in the unit test </span><strong><span>CompressorTests.TestCompressSomeZs</span></strong><span>.</span></li><li><strong><span>Some Zs.txt.cmp</span></strong><span>: The expected result of compressing </span><strong><span>Some Zs.txt</span></strong><span> (10 bytes). Its contents are used in the unit test </span><strong><span>DecompressorTests.TestDecompressSomeZs</span></strong><span>.</span></li></ul><p><span>You can compare two files using the provided executable, </span><strong><span>FileCompare.exe</span></strong><span>. This executable must be in the same folder as the three provided files whose names begin with </span><strong><span>Ksu.Cis300.FileCompare</span></strong><span>. Running this executable will open a window containing a single button. Clicking this button will open two </span><strong><span>OpenFileDialog</span></strong><span>s in sequence to allow you to choose the two files you wish to compare. The program will then display a </span><strong><span>MessageBox</span></strong><span> containing one of the following messages:</span></p><ul><li><span>&quot;The files are the same.&quot;</span></li><li><span>&quot;The files have different lengths.&quot;</span></li><li><span>&quot;The files are different.&quot;</span></li><li><span>The message from an exception that was thrown while the files were being read.</span></li></ul><p><span>The executable </span><strong><span>BinaryFileViewer.exe</span></strong><span> has been included in your repository to provide further assistance in debugging your program. To view a file with this program, open the file from the program&#39;s File menu. For performance reasons, if the file is larger than 4K, it will be truncated (this should be more than enough for debugging this assignment). The file is shown in binary, 64 bits per line. The position of the beginning of any selected text, or of the cursor if there is no text selected, is shown as a byte index followed by a bit index within that byte. If there is text selected, its length is shown; if not, this value is 0. If there is a selection of length no more than 63, its value in both decimal and hex is shown. By holding down the Shift key while moving the text cursor with the arrow keys, you can change the end of the selection. This is useful for finding a specific bit length within the file. Using the arrow keys and the Shift key in this way, you can work your way through the different parts of a compressed file, checking whether they are correct.</span></p><p><span>You can also use the tree viewer provided in the namespace </span><strong><span>KansasStateUniversity.TreeViewer2</span></strong><span> to display a binary tree. You can construct a form containing a drawing of a tree </span><code>t</code><span> with the expression </span><code>new TreeForm(t, 100)</code><span>. (The second parameter gives a maximum height for the tree.) The resulting </span><strong><span>TreeForm</span></strong><span> can be displayed using either its </span><strong><span>Show</span></strong><span> method or its </span><strong><span>ShowDialog</span></strong><span> method (both methods take an empty parameter list). The </span><strong><span>Show</span></strong><span> method will display the form as a non-modal dialog - i.e., without blocking program execution; however, if the debugger stops at a subsequent breakpoint, the form won&#39;t be visible yet. For this reason, the </span><strong><span>ShowDialog</span></strong><span> method might be more convenient. This method shows the form as a modal dialog, blocking program execution until the form is closed.</span></p><p><span>Be sure to test your program on several of the provided data files to make sure the </span><strong><span>UserInterface</span></strong><span> class works properly. Make sure some exception is shown when trying to decompress a file that doesn&#39;t contain compressed data.</span></p><p><span>In addition, you can download large text files from </span><a href='http://www.gutenberg.org/'><span>Project Gutenberg</span></a><span>. </span></p><h2 id='9-performance'><span>9. Performance</span></h2><p><span>The posted data files should compress/decompress with no noticeable delay. On my Lenovo laptop, it takes about 2 seconds to compress or decompress </span><a href='https://www.gutenberg.org/cache/epub/100/pg100.txt'><span>The Complete Works of William Shakespeare</span></a><span>. If your response times are much different from this, factoring in what you know about your machine&#39;s performance, you may have implemented something inefficiently.</span></p><h2 id='10-submitting-your-solution'><span>10. Submitting Your Solution</span></h2><p><span>Be sure to </span><strong><span>commit</span></strong><span> all your changes, then </span><strong><span>push</span></strong><span> your commits to your GitHub repository. Make sure the </span><strong><span>Ksu.Cis300.HuffmanTrees</span></strong><span> folder in your repository contains all six .cs files, as we can only grade what is present in the repository. Then submit the </span><em><span>entire URL</span></em><span> of the commit that you want graded. </span></p><p><strong><span>Note:</span></strong><span> The repositories for the homework assignments for this class are set up to use GitHub&#39;s autograding feature to track push times. No actual testing/grading is done, but after each push, the GitHub page for the repository will show a green check mark on the line indicating the latest commit. Clicking that check mark will display a popup indicating that all checks have passed, regardless of whether your program works. You may also get an email indicating that all checks have passed. The only purpose for using the autograding feature in this way is to give us a backup indication of your push times in case you submitted your assignment incorrectly.</span></p></div></div>
+</body>
+</html>
