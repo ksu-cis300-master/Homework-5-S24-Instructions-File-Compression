@@ -6,8 +6,6 @@ For this assignment, you will write a file compressor/decompressor using code fr
 
 [TOC]
 
-
-
 ## 1. User Requirements
 
 The user needs a code base for experimenting with new file compression techniques. This code base needs to be a fully-functioning program that compresses and decompresses files. However, it needs to implement only the most basic compression involving the use of a variable-width encoding, computed by using a Huffman tree as built in Lab Assignment 26. The company will then build on this code base by trying additional techniques. The compression should be *lossless*; i.e., decompressing a compressed file should produce an exact copy of the original file. The program only needs to compress single files.
@@ -20,12 +18,12 @@ If the file to be compressed is nonempty, the compressed file produced by this p
 
 - The next 8 bits should be the number of non-leaf nodes in the Huffman tree. In what follows, we will refer to this value as *n*. In any binary tree, the number of leaves is one more than the number of non-leaves. Any nonempty Huffman tree has from 1 to 256 leaves; hence, *n* will range from 0 to 255, which is exactly the range that can be stored in 8 bits.
 
-- The next 19*n* + 9 bits should contain a description of the Huffman tree. This description consists of a description of each node in the tree, in an order such that each non-leaf occurs somewhere after its left child and immediately following its right child. We will associate with each node a *node number*, which is the number of nodes written prior to this node. Thus, the first node written has a node number of 0, the second has a node number of 1, etc. A node should be written as follows:
+- The next 19*n* + 9 bits should contain a description of the Huffman tree. This description consists of a description of each node in the tree, in an order such that each non-leaf occurs somewhere after its left child and immediately following its right child. We will associate with each node a *node number*, which is the number of nodes written prior to this node. Thus, the first node written has a node number of 0, the second has a node number of 1, etc. Because the Huffman tree can contain at most 255 + 256 = 511 nodes, all node numbers will be less than 511; hence, a node number can be stored in 9 bits. A node should be written as follows:
 
   - If the node is a leaf, its first bit should be 0, and its next 8 bits should be the byte stored in the node (9 bits total).
   - Otherwise, its first bit should be a 1, and its next 9 bits should be the node number of its left child (10 bits total).
 
-  Because a Huffman tree with *n* non-leaves always has exactly *n* + 1 leaves, the total number of bits in its description is 19*n* + 9.
+  Because a Huffman tree with *n* non-leaves always has exactly *n* + 1 leaves, the total number of bits in its description is 10*n* + 9(*n* + 1) = 19*n* + 9.
 
 - What follows is the encoding of the original file using the variable-width encoding scheme given by the Huffman tree. The length of this encoding depends on the contents of the original file.
 
@@ -41,7 +39,7 @@ Note that because of the need to write the file length and the Huffman tree, the
 
  Create a GitHub repository using the URL provided in Canvas. This repository contains the model solution to Lab Assignment 26 with the following files added:
 
-- **Ksu.Cis300.BitIO.dll**, which provides the namespace **Ksu.Cis300.BitIO** for reading and writing files a bit at a time (see below).
+- **Ksu.Cis300.BitIO.dll**, which provides the namespace **Ksu.Cis300.BitIO** for reading and writing files a bit at a time (see [Section 6. Provided Data Types](#6. Provided Data Types)).
 - **BinaryFileViewer.exe**, an executable that allows you to examine the contents of a file at the bit level (see [Section 8. Testing and Debugging](#8. Testing and Debugging)).
 - **FileCompare.exe**, an executable that allows you to compare two files (see [Section 8. Testing and Debugging](#8. Testing and Debugging)).
 - **Ksu.Cis300.FileCompare.\***, three files that need to be in the same folder as **FileCompare.exe** in order for that program to run.
@@ -64,7 +62,7 @@ The GUI will also have two **OpenFileDialog**s (one for opening uncompressed fil
 
 The functionality of the two buttons is described in what follows. After that, the exception handling you will need to include is described.
 
-### 4.2.1 Compress a File
+#### 4.2.1. Compress a File
 
 Clicking this button should open the **OpenFileDialog** for uncompressed files. Its title should be, "Compress File". Furthermore, there should be no file name displayed when this dialog is first opened (when it is opened again, it can have the name of the last file selected for compression). Finally, the filter dropdown should contain a single entry, "All files (\*.\*)", which should allow all files to be shown. 
 
@@ -79,15 +77,15 @@ The filter dropdown should contain two entries:
 
 If the user selects a file from the second dialog, the program should compress the contents of the first file selected and place the result in the second file selected. After the compressed file is successfully written, a **MessageBox** displaying the message, "Compressed file written.", should be shown. If any exception is thrown, it should be displayed in a **MessageBox**. Exceptions due to programmer error should not be thrown.
 
-If the user cancels either dialog without selecting a file, nothing should be done.
+If the user cancels either dialog without selecting a file, nothing more should be done.
 
-### 4.2.2. Decompress a File
+#### 4.2.2. Decompress a File
 
 Clicking this button should display the **OpenFileDialog** for compressed files. Its title should be, "Decompress File", and its filter dropdown should be like the one for the **SaveFileDialog** described above. If the user selects a file from this dialog, the **SaveFileDialog** for uncompressed files should be displayed. It should be similar to the **SaveFileDialog** described above, except that the filter dropdown should be like the one for the **OpenFileDialog** for uncompressed files. Furthermore, if the file name that was chosen in the **OpenFileDialog** ends in ".cmp", the file name shown in the **SaveFileDialog** should be the same name, but with the ".cmp" removed. Otherwise, the file name should be empty.
 
 If the user selects a file from the second dialog, the program should decompress the contents of the first file selected and place the result in the second file selected. After the compressed file is successfully written, a **MessageBox** displaying the message, "Decompressed file written.", should be shown. The decompressed file should be identical to the original uncompressed file. If any exception is thrown, it should be displayed in a **MessageBox**. Exceptions due to programmer error should not be thrown.
 
-If the user cancels either dialog without selecting a file, nothing should be done.
+If the user cancels either dialog without selecting a file, nothing more should be done.
 
 ### 4.3. Exception Handling
 
@@ -108,7 +106,7 @@ In order for the unit tests to compile, the names of all **public** members must
 
 ## 6. Provided Data Types
 
-Several other types are provided - these are not shown in the class diagram above. The **BinaryTreeNode\<T\>** class (in the **Ksu.Cis300.ImmutableBinaryTrees** namespace) has been provided in **Ksu.Cis300.ImmutableBinaryTrees.dll**, and the class library project containing **MinPriorityQueue<TPriority, TValue>** (in the **Ksu.Cis300.PriorityQueueLibrary** namespace) has been included. In addition, the DLL **Ksu.Cis300.BitIO.dll** provides the namespace **RodHowell.Cis300.BitIO**, which contains two classes for reading and writing a bit at a time. These two classes are described in what follows.
+Several other types are provided - these are not shown in the class diagram above. The **BinaryTreeNode\<T\>** class (in the **Ksu.Cis300.ImmutableBinaryTrees** namespace) has been provided in **Ksu.Cis300.ImmutableBinaryTrees.dll**, and the class library project containing **MinPriorityQueue<TPriority, TValue>** (in the **Ksu.Cis300.PriorityQueueLibrary** namespace) has been included. In addition, the DLL **Ksu.Cis300.BitIO.dll** provides the namespace **Ksu.Cis300.BitIO**, which contains two classes for reading and writing a bit at a time. These two classes are described in what follows.
 
 ### 6.1. BitInputStream
 
@@ -178,11 +176,11 @@ This method should take the following parameters:
 - a **StringBuilder** describing the path in the entire Huffman tree to the given sub-tree (a '0' indicates the left child, and a '1' indicates the right child); and
 - a **string[ ]** in which the encodings will be stored (you may assume it has 256 locations).
 
-It should not return anything. This method will need to traverse the given tree, and at each leaf, place description of the path to that leaf (as a **string**) in the given **string[ ]** at the index indicated by the **byte** stored in the leaf. Because only leaves will be processed, it doesn't make sense to call this an inorder, preorder, or postorder traversal (it could actually be any of the three). There are only two cases. If the tree is a leaf, store the given path in the array element indexed by the **byte** stored in the node. Otherwise, recursively get the encodings for the two children. Prior to making each recursive call, append the appropriate constant to the **StringBuilder**, and remove this value after the recursive call.
+It should not return anything. This method will need to traverse the given tree, and at each leaf, place the description of the path to that leaf (as a **string**) in the given **string[ ]** at the index indicated by the **byte** stored in the leaf. Because only leaves will be processed, it doesn't make sense to call this an inorder, preorder, or postorder traversal (it could actually be any of the three). There are only two cases. If the tree is a leaf, store the given path in the array element indexed by the **byte** stored in the node. Otherwise, recursively get the encodings for the two children. Prior to making each recursive call, append the appropriate constant to the **StringBuilder**, and remove this value after the recursive call.
 
 #### 7.2.5. A **public Compress** method
 
-This method should take as its parameters a **Stream** giving the data to be compressed and a **BitOutputStream** to which the compressed data will be written. It should return nothing. It is responsible for compressing the given input file to the given output file in the format described under "Compressed File Format" above. You don't any **using** statements because the streams will be opened and closed in the **UserInterface** class. 
+This method should take as its parameters a **Stream** giving the data to be compressed and a **BitOutputStream** to which the compressed data will be written. It should return nothing. It is responsible for compressing the given input file to the given output file in the format described under "Compressed File Format" above. You don't need any **using** statements because the streams will be opened and closed in the **UserInterface** class. 
 
 First, make sure both parameters are non-**null** - if either is **null** throw an **ArgumentNullException**. Then get the length of the stream using its [**Length**](https://learn.microsoft.com/en-us/dotnet/api/system.io.stream.length?view=net-6.0) property, which gets a **long**, and write it to the output stream using the proper number of bits. If the length of the input stream is nonzero:
 
@@ -259,7 +257,7 @@ This archive contains several uncompressed files, the corresponding compressed f
 - **bonnieTruncatedTree3.txt.cmp**: Compressed data in which the Huffman tree ends prematurely - specifically, in the middle of a non-leaf node. Attempting to decompress this file should result in an error message being displayed, as described under "Exception Handling" above. The contents of this file are used in the unit test **DecompressorTests.TestDecompressTruncatedTree3**.
 - **cmp**: This is a copy of **bonnie.txt.cmp**. When decompressing, in the "Decompress File" dialog, you will need to change the filter drop-down to "All files (\*.\*)" in order to see this file. The "Save As" dialog should show an empty file name. It should decompress to the same file as **bonnie.txt**.
 - **empty.txt**: An empty file. Its contents are used in the unit tests **CompressorTests.TestCompressEmpty** and **DecompressorTests.TestDecompressTruncatedEmpty**. Attempting to decompress this file should result in an error message being displayed, as described under "Exception Handling" above. 
-- **empty.txt.cmp**: The expected result of compressing **empty.txt** (8 bytes). Its contents are used in the unit test **CompressorTests.TestDecompressToEmpty**.
+- **empty.txt.cmp**: The expected result of compressing **empty.txt** (8 bytes). Its contents are used in the unit test **DecompressorTests.TestDecompressToEmpty**.
 - **index.md**: A medium-sized (57,182 bytes) plain-text file (the markdown file used to generate the instructions files for Homework 3).
 - **index.md.cmp**: The expected result of compressing **index.md** (33,628 bytes).
 - **Some Zs.txt**: The same byte value (the character 'Z') repeated 10,000 times. Its contents are used in the unit test **CompressorTests.TestCompressSomeZs**.
@@ -268,8 +266,8 @@ This archive contains several uncompressed files, the corresponding compressed f
 You can compare two files using the provided executable, **FileCompare.exe**. This executable must be in the same folder as the three provided files whose names begin with **Ksu.Cis300.FileCompare**. Running this executable will open a window containing a single button. Clicking this button will open two **OpenFileDialog**s in sequence to allow you to choose the two files you wish to compare. The program will then display a **MessageBox** containing one of the following messages:
 
 - "The files are the same."
-- "The files have different lengths."
-- "The files are different."
+- "The files have different lengths." (The lengths are compared before the file contents are compared.)
+- "The files are different." (This lengths are the same in this case.)
 - The message from an exception that was thrown while the files were being read.
 
 The executable **BinaryFileViewer.exe** has been included in your repository to provide further assistance in debugging your program. To view a file with this program, open the file from the program's File menu. For performance reasons, if the file is larger than 4K, it will be truncated (this should be more than enough for debugging this assignment). The file is shown in binary, 64 bits per line. The position of the beginning of any selected text, or of the cursor if there is no text selected, is shown as a byte index followed by a bit index within that byte. If there is text selected, its length is shown; if not, this value is 0. If there is a selection of length no more than 63, its value in both decimal and hex is shown. By holding down the Shift key while moving the text cursor with the arrow keys, you can change the end of the selection. This is useful for finding a specific bit length within the file. Using the arrow keys and the Shift key in this way, you can work your way through the different parts of a compressed file, checking whether they are correct.
@@ -282,7 +280,7 @@ In addition, you can download large text files from [Project Gutenberg](http://w
 
 ## 9. Performance
 
-The posted data files should compress/decompress with no noticeable delay. On my Lenovo laptop, it takes about 2 seconds to compress or decompress [The Complete Works of William Shakespeare](https://www.gutenberg.org/cache/epub/100/pg100.txt). If your response times are much different from this, factoring in what you know about your machine's performance, you may have implemented something inefficiently.
+The posted data files should compress/decompress with no noticeable delay. On my Lenovo laptop, it takes about 2 seconds to compress or decompress [The Complete Works of William Shakespeare](https://www.gutenberg.org/cache/epub/100/pg100.txt) (5,638,549 bytes). If your response times are much different from this, factoring in what you know about your machine's performance, you may have implemented something inefficiently.
 
 ## 10. Submitting Your Solution
 
