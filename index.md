@@ -48,7 +48,7 @@ In addition, several new files were added to **Data.zip**. Finally, a unit test 
 
 ## 4. User Interface
 
-In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see [Section 7. Coding Requirements](#7. Coding Requirements)). The [demo video]() also illustrates the expected look and behavior.
+In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see [Section 7. Coding Requirements](#7. Coding Requirements)). The [demo video](https://youtu.be/CCfqO8mwC3M) also illustrates the expected look and behavior.
 
 ### 4.1. Manual User Interface Design
 
